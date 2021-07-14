@@ -26,7 +26,7 @@ print(output_blob_name, net.outputs[output_blob_name].shape)
 exec_net = ie.load_network(network=net, device_name='CPU', num_requests=1)
 
 # 入力画像の前処理
-img    = cv2.imread('resources/car_1.bmp')
+img    = cv2.imread('car_1.bmp')
 in_img = cv2.resize(img, (width,height))
 in_img = in_img.transpose((2, 0, 1))
 in_img = in_img.reshape((1, channel, height, width))

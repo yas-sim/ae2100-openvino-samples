@@ -26,10 +26,10 @@ print(output_blob_name, net.outputs[output_blob_name].shape)
 exec_net = ie.load_network(network=net, device_name='CPU', num_requests=1)
 
 # 入力画像の前処理
-img = cv2.imread('resources/car.png')
-img = cv2.resize(img, (width,height))
-img = img.transpose((2, 0, 1))
-img = img.reshape((1, channel, height, width))
+img = cv2.imread('car.png')
+img = cv2.resize(img, (width,height))           # スケーリング
+img = img.transpose((2, 0, 1))                  # 軸の入れ替え   HWC -> CHW
+img = img.reshape((1, channel, height, width))  # バッチ軸の追加 CHW -> NCHW
 print('image shape=', img.shape)
 
 # 推論実行
